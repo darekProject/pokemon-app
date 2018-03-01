@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Search from './Search/Search';
+import Pokemons from "./Pokemons/Pokemons";
 
 class App extends Component {
     render() {
-        return <Search/>;
+        return (
+            <Fragment>
+                <Search/>
+                <Pokemons/>
+            </Fragment>
+        );
     }
 }
 

@@ -4,29 +4,34 @@ import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import * as actions from "../../actions/index";
 
-import './Search.sass';
+import './Search.css';
 
 class Search extends Component {
+    static propTypes = {
+        fetchPokemon: PropTypes.func
+    };
+
+    static defaultProps = {
+        fetchPokemon: () => {
+        }
+    };
+
     handleFormSubmit = ({pokemon}) => {
         console.log(pokemon);
+        this.props.fetchPokemon(pokemon);
     };
 
     render() {
-
         const {handleSubmit} = this.props;
 
         return (
-            <div className="container d-flex justify-content-center">
-                <div className="wrapper-search">
+            <div className="container-fluid search d-flex flex-column align-items-center justify-content-center">
+                <div className="title">
                     <h1>Find pokemons: </h1>
                 </div>
                 <form style={{marginTop: '50px'}} className="col-6"
                       onSubmit={handleSubmit((values) => this.handleFormSubmit(values))}>
-                    <div className="form-group row">
-                        <div className="col-10">
-                            <Field type="text" component="input" name="pokemon" className="form-control"/>
-                        </div>
-                    </div>
+                    <Field type="text" component="input" name="pokemon"/>
                     <button action="submit" className="btn btn-primary">Search</button>
                 </form>
             </div>
