@@ -7,18 +7,27 @@ import './Pokemons.css';
 
 class Pokemons extends Component {
     static propTypes = {
-        pokemons: PropTypes.object
+        pokemons: PropTypes.array,
+        error: PropTypes.string
     };
 
     static defaultProps = {
-        pokemons: null
+        pokemons: null,
+        error: ''
     };
 
     renderPokemons = () => {
         if (this.props.pokemons) {
-            const pokemon = this.props.pokemons.data;
-            console.log(pokemon);
-            return <Pokemon name={pokemon.name} imgFront={pokemon.sprites.front_default} imgBack={pokemon.sprites.back_default} abilities={pokemon.abilities}/>
+            const pokemons = this.props.pokemons;
+            console.log(pokemons);
+            return pokemons.map((pokemon, index) => {
+                return <Pokemon key={index} name={pokemon.name} imgFront={pokemon.sprites.front_default} imgBack={pokemon.sprites.back_default} abilities={pokemon.abilities}/>
+            });
+        } else if(this.props.error) {
+            console.log(this.props.error.data.error);
+            console.log(this.props.error.data);
+            // return <div>{this.props.error}</div>
+            return <div>Find pokemons...</div>
         } else {
             return <div>Find pokemons...</div>
         }
@@ -36,7 +45,8 @@ class Pokemons extends Component {
 }
 
 const mapStatToProps = state => ({
-    pokemons: state.poke.pokemons
+    pokemons: state.poke.pokemons,
+    error: state.poke.error
 });
 
 export default connect(mapStatToProps)(Pokemons);

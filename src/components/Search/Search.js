@@ -7,13 +7,22 @@ import * as actions from "../../actions/index";
 import './Search.css';
 
 class Search extends Component {
+
     static propTypes = {
-        fetchPokemon: PropTypes.func
+        fetchPokemon: PropTypes.func,
+        fetchAllPoke: PropTypes.func
     };
 
     static defaultProps = {
         fetchPokemon: () => {
+        },
+        fetchAllPoke: () => {
         }
+    };
+
+    handleFetchAllPoke = () => {
+        console.log('go');
+        this.props.fetchAllPoke();
     };
 
     handleFormSubmit = ({pokemon}) => {
@@ -34,6 +43,10 @@ class Search extends Component {
                     <Field type="text" component="input" name="pokemon"/>
                     <button action="submit" className="btn btn-primary">Search</button>
                 </form>
+                <p>or</p>
+                <button onClick={this.handleFetchAllPoke} className="btn btn-primary fetch-all-poke">Display all
+                    pokemons
+                </button>
             </div>
         )
     }

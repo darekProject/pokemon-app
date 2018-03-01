@@ -3,6 +3,13 @@
   background: #E1F5FE;
   color: #025AA5;
   font-size: 28px; }
+  .search p {
+    margin-top: 30px;
+    font-weight: 900; }
+
+.fetch-all-poke {
+  font-weight: bold !important;
+  cursor: pointer; }
 
 form {
   display: flex;
@@ -20,6 +27,5 @@ form {
       border-bottom: 2px solid #025AA5; }
   form button {
     width: 20%;
-    border-radius: 0 !important;
     font-weight: bold !important;
     cursor: pointer; }
