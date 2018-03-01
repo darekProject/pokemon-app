@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import * as actions from "../../actions/index";
 
+import './Search.sass';
+
 class Search extends Component {
     handleFormSubmit = ({pokemon}) => {
         console.log(pokemon);
