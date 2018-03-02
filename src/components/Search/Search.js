@@ -8,6 +8,14 @@ import './Search.css';
 
 class Search extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            limit: 20,
+            offset: 0,
+        }
+    }
+
     static propTypes = {
         fetchPokemon: PropTypes.func,
         fetchAllPoke: PropTypes.func
@@ -22,7 +30,7 @@ class Search extends Component {
 
     handleFetchAllPoke = () => {
         console.log('go');
-        this.props.fetchAllPoke();
+        this.props.fetchAllPoke(this.state.limit, this.state.offset);
     };
 
     handleFormSubmit = ({pokemon}) => {
@@ -40,7 +48,11 @@ class Search extends Component {
                 </div>
                 <form style={{marginTop: '50px'}} className="col-6"
                       onSubmit={handleSubmit((values) => this.handleFormSubmit(values))}>
-                    <Field type="text" component="input" name="pokemon"/>
+                    <div>
+                        <Field type="text" component="input" name="pokemon"/>
+                        {/*<span>pokemon/"id or name" or type/"id or type" or ability/"id or ability"</span>*/}
+                        <span>pokemon/"id or name"</span>
+                    </div>
                     <button action="submit" className="btn btn-primary">Search</button>
                 </form>
                 <p>or</p>

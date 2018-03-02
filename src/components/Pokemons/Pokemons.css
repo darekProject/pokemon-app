@@ -7,4 +7,6 @@
 .wrapper-pokemons {
   margin-top: 50px;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 50px; }

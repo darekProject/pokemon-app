@@ -3,7 +3,8 @@ import {FETCH_POKE, FETCH_ERROR, FETCH_ALL_POKE} from './type';
 
 export const fetchPokemon = pokemon => async dispatch => {
     try {
-        const {data: {abilities, base_experience, height, name, sprites, types, weight}} = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+        const {data: {abilities, base_experience, height, name, sprites, types, weight}} = await axios.get(`https://pokeapi.co/api/v2/${pokemon}`);
+        // const data = await axios.get(`https://pokeapi.co/api/v2/${pokemon}`);
 
         const payload = {
             abilities,
@@ -17,14 +18,16 @@ export const fetchPokemon = pokemon => async dispatch => {
         console.log(payload);
         dispatch({type: FETCH_POKE, payload});
     } catch (err) {
+        console.log(err);
         return dispatch(error(err));
     }
 };
 
-export const fetchAllPoke = () => async dispatch => {
+export const fetchAllPoke = (limit, offset) => async dispatch => {
     try {
         console.log('go gi');
-        const {data: {results}} = await axios.get('https://pokeapi.co/api/v2/pokemon/');
+        console.log(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
+        const {data: {results}} = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
 
         console.log(results);
 
@@ -46,6 +49,7 @@ export const fetchAllPoke = () => async dispatch => {
 
 
     } catch (err) {
+        console.log(err.error.date);
         return dispatch(error(err));
     }
 };
